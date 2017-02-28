@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import { User } from '../models/user';
 
 @Injectable()
 export class UserService {
@@ -9,16 +11,24 @@ export class UserService {
 	/**
 	 * Grab all users
 	 */
-	 getUsers() {
+	 getUsers(): Observable<User[]> {
 	 	return this.http.get(this.usersUrl)
             .map(res => res.json().data);
 	 }
 
-	// Get a single user
+	/**
+	 * Get a single user
+	 */
 
-	// Create a user
+	/**
+	 * Create a user
+	 */
 
-	// Update a user
+	/**
+	 * Update a user
+	 */
 
-	// Delete a user
+	/**
+	 * Delete a user
+	 */
 }
