@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
+require("rxjs/add/operator/map");
 var AppComponent = (function () {
     function AppComponent(http) {
         this.http = http;
@@ -18,10 +19,8 @@ var AppComponent = (function () {
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.http.get('https://reqres.in/api/users')
-            .subscribe(function (data) {
-            console.log('data', data.json());
-            _this.users = data.json().data;
-        });
+            .map(function (res) { return res.json().data; })
+            .subscribe(function (users) { return _this.users = users; });
     };
     return AppComponent;
 }());
