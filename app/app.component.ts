@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 
 @Component({
@@ -10,8 +10,14 @@ import { Http } from '@angular/http';
         </div>
     `
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     
     constructor(private http: Http) {}
 
+    ngOnInit() {
+        this.http.get('https://reqres.in/api/users')
+            .subscribe(data => {
+                console.log('data', data)
+            });
+    }
 }
