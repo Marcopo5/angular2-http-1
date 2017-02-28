@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
+import { Http } from '@angular/http';
 
 @Component({
-  selector: 'my-app',
-  styles: [`
-    
-  `],
-  template: `
-    <div class="jumbotron text-center">
-      <h1>The App Lives!</h1>
-      <p>{{ message }}</p>
-    </div>
-  `
+    selector: 'my-app',
+    template: `
+        <div class="jumbotron text-center">
+        <h1>The App Lives!</h1>
+        <p>{{ message }}</p>
+        </div>
+    `
 })
 export class AppComponent {
-  message = 'This is the sample message.';
+    
+    constructor(private http: Http) {}
+
 }
