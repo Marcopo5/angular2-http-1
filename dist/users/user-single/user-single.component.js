@@ -10,24 +10,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var user_service_1 = require("../../shared/services/user.service");
-var UserListComponent = (function () {
-    function UserListComponent(service) {
+var UserSingleComponent = (function () {
+    function UserSingleComponent(route, service) {
+        this.route = route;
         this.service = service;
     }
-    UserListComponent.prototype.ngOnInit = function () {
+    UserSingleComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.service.getUsers()
-            .subscribe(function (users) { return _this.users = users; });
+        // grab the id from the url
+        var id = this.route.snapshot.params['id'];
+        // use the userservice to getUser()
+        this.service.getUser(id)
+            .subscribe(function (user) { return _this.user = user; });
     };
-    return UserListComponent;
+    return UserSingleComponent;
 }());
-UserListComponent = __decorate([
+UserSingleComponent = __decorate([
     core_1.Component({
-        styles: ["\n\t\t.user-card { cursor: pointer };\n\t"],
-        templateUrl: './app/users/user-list/user-list.component.html'
+        templateUrl: './app/users/user-single/user-single.component.html'
     }),
-    __metadata("design:paramtypes", [user_service_1.UserService])
-], UserListComponent);
-exports.UserListComponent = UserListComponent;
-//# sourceMappingURL=user-list.component.js.map
+    __metadata("design:paramtypes", [router_1.ActivatedRoute, user_service_1.UserService])
+], UserSingleComponent);
+exports.UserSingleComponent = UserSingleComponent;
+//# sourceMappingURL=user-single.component.js.map
