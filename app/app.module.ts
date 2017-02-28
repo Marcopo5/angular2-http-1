@@ -4,6 +4,8 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
+import { UserService } from './shared/services/user.services';
+
 import 'rxjs/add/operator/map';
 
 @NgModule({
@@ -14,6 +16,9 @@ import 'rxjs/add/operator/map';
 	],
 	declarations: [
 		AppComponent
+	],
+	providers: [
+		UserService
 	],
 	bootstrap: [ AppComponent ]
 })

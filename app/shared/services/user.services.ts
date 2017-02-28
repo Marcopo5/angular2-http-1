@@ -1,9 +1,18 @@
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
 
 @Injectable()
 export class UserService {
+	private usersUrl: string = 'https://reqres.in/api/users';
+	constructor(private http: Http) {}
 
-	// Grab all users
+	/**
+	 * Grab all users
+	 */
+	 getUsers() {
+	 	return this.http.get(this.usersUrl)
+            .map(res => res.json().data);
+	 }
 
 	// Get a single user
 
