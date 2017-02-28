@@ -13,6 +13,7 @@ var forms_1 = require("@angular/forms");
 var app_component_1 = require("./app.component");
 var user_services_1 = require("./shared/services/user.services");
 require("rxjs/add/operator/map");
+require("rxjs/add/operator/catch");
 var AppModule = (function () {
     function AppModule() {
     }

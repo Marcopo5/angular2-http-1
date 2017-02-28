@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { UserService } from './shared/services/user.services';
 
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @NgModule({
 	imports: [

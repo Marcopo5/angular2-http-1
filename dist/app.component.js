@@ -18,7 +18,9 @@ var AppComponent = (function () {
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.service.getUsers()
-            .subscribe(function (users) { return _this.users = users; });
+            .subscribe(function (users) { return _this.users = users; }, function (err) {
+            console.log('err', err);
+        });
     };
     return AppComponent;
 }());
