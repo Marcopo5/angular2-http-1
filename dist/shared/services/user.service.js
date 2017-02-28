@@ -39,6 +39,11 @@ var UserService = (function () {
     /**
      * Create a user
      */
+    UserService.prototype.createUser = function (user) {
+        return this.http.post(this.usersUrl, user)
+            .map(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
     /**
      * Update a user
      */
