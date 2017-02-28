@@ -13,6 +13,7 @@ import { UserEditComponent } from './users/user-edit/user-edit.component';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 @NgModule({
 	imports: [
