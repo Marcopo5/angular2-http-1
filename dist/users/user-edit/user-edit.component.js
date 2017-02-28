@@ -21,7 +21,16 @@ var UserEditComponent = (function () {
         var _this = this;
         // grab the user
         var id = this.route.snapshot.params['id'];
-        this.service.getUser(id).subscribe(function (user) { return _this.user; });
+        this.service.getUser(id).subscribe(function (user) { return _this.user = user; });
+    };
+    /**
+     * Update the user
+     */
+    UserEditComponent.prototype.updateUser = function () {
+        this.service.updateUser(this.user)
+            .subscribe(function (user) {
+            console.log('user was updated');
+        });
     };
     return UserEditComponent;
 }());

@@ -42,6 +42,11 @@ var UserService = (function () {
     /**
      * Update a user
      */
+    UserService.prototype.updateUser = function (user) {
+        return this.http.put(this.usersUrl + "/" + user.id, user)
+            .map(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
     /**
      * Delete a user
      */
