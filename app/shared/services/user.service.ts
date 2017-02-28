@@ -11,11 +11,12 @@ export class UserService {
 	/**
 	 * Grab all users
 	 */
-	 getUsers(): Observable<User[]> {
+	getUsers(): Observable<User[]> {
 	 	return this.http.get(this.usersUrl)
             .map(res => res.json().data)
+            .map(users => users.map(this.toUser))
             .catch(this.handleError);
-	 }
+	}
 
 	/**
 	 * Get a single user
@@ -23,6 +24,7 @@ export class UserService {
 	getUser(id: number): Observable<User> {
 		return this.http.get(`${this.usersUrl}/${id}`)
 			.map(res => res.json().data)
+			.map(this.toUser)
 			.catch(this.handleError);
 	}
 
@@ -37,6 +39,18 @@ export class UserService {
 	/**
 	 * Delete a user
 	 */
+
+	/**
+	 * Convert user infor from API to our standard/format
+	 */
+	private toUser(user): User {
+		return {
+			id: user.id,
+			name: `${user.first_name} ${user.last_name}`,
+			username: user.first_name,
+			avatar: user.avatar
+		}
+	}
 
 	/**
 	 * Handle any errors from API
