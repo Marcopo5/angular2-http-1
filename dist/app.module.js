@@ -20,6 +20,7 @@ var user_edit_component_1 = require("./users/user-edit/user-edit.component");
 var user_create_component_1 = require("./users/user-create/user-create.component");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
+require("rxjs/add/operator/do");
 require("rxjs/add/observable/throw");
 var AppModule = (function () {
     function AppModule() {

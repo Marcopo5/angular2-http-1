@@ -32,7 +32,6 @@ var UserCreateComponent = (function () {
         this.service.createUser(this.user)
             .subscribe(function (user) {
             _this.successMessage = 'User was created';
-            console.log('User was created');
             // navigate back to users page
             _this.router.navigate(['/users']);
         });
