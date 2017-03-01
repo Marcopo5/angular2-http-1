@@ -49,6 +49,10 @@ export class UserService {
 	/**
 	 * Delete a user
 	 */
+	deleteUser(id: number): Observable<any> {
+		return this.http.delete(`${this.usersUrl}/${id}`)
+			.catch(this.handleError);
+	}
 
 	/**
 	 * Convert user infor from API to our standard/format
