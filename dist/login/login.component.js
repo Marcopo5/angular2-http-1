@@ -10,10 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var auth_service_1 = require("../shared/services/auth.service");
 var LoginComponent = (function () {
-    function LoginComponent(service) {
+    function LoginComponent(service, router) {
         this.service = service;
+        this.router = router;
         this.credentials = { username: '', password: '' };
         this.successMessage = '';
         this.errorMessage = '';
@@ -23,10 +25,26 @@ var LoginComponent = (function () {
      * Login a user
      */
     LoginComponent.prototype.login = function () {
+        var _this = this;
         this.service.login(this.credentials.username, this.credentials.password)
             .subscribe(function (data) {
+            _this.router.navigate(['']);
+            console.log('data', data);
         }, function (error) {
+            console.log(error);
+            _this.errorMessage = "Wrong email/username or password.";
+            _this.clearMessages();
         });
+    };
+    /**
+     * clear all messages after 5 seconds
+     */
+    LoginComponent.prototype.clearMessages = function () {
+        var _this = this;
+        setTimeout(function () {
+            _this.successMessage = '';
+            _this.errorMessage = '';
+        }, 5000);
     };
     return LoginComponent;
 }());
@@ -34,7 +52,7 @@ LoginComponent = __decorate([
     core_1.Component({
         templateUrl: './app/login/login.component.html'
     }),
-    __metadata("design:paramtypes", [auth_service_1.AuthService])
+    __metadata("design:paramtypes", [auth_service_1.AuthService, router_1.Router])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map

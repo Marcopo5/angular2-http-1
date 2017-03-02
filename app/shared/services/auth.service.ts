@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService {
-	private authUrl: string = 'http://reqres.in/api';
+	private authUrl: string = 'https://reqres.in/api';
 	private loggedIn: boolean = false;
 
 	constructor(private http: Http) {
@@ -23,6 +23,8 @@ export class AuthService {
 	 * Log the user in
 	 */
 	login(username: string, password: string): Observable<string> {
+		console.log('username', username)
+		console.log('password', password)
 		return this.http.post(`${this.authUrl}/login`, { username, password })
 			.map(res => res.json())
 			.do(res => {

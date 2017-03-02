@@ -19,6 +19,7 @@ var user_single_component_1 = require("./users/user-single/user-single.component
 var user_edit_component_1 = require("./users/user-edit/user-edit.component");
 var user_create_component_1 = require("./users/user-create/user-create.component");
 var login_component_1 = require("./login/login.component");
+var auth_service_1 = require("./shared/services/auth.service");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
 require("rxjs/add/operator/do");
@@ -46,6 +47,7 @@ AppModule = __decorate([
             login_component_1.LoginComponent
         ],
         providers: [
+            auth_service_1.AuthService,
             user_service_1.UserService
         ],
         bootstrap: [app_component_1.AppComponent]

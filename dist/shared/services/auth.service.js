@@ -15,7 +15,7 @@ var Observable_1 = require("rxjs/Observable");
 var AuthService = (function () {
     function AuthService(http) {
         this.http = http;
-        this.authUrl = 'http://reqres.in/api';
+        this.authUrl = 'https://reqres.in/api';
         this.loggedIn = false;
         // look at localStorage to check if user is logged in
         this.loggedIn = !!localStorage.getItem('auth_token');
@@ -30,6 +30,8 @@ var AuthService = (function () {
      * Log the user in
      */
     AuthService.prototype.login = function (username, password) {
+        console.log('username', username);
+        console.log('password', password);
         return this.http.post(this.authUrl + "/login", { username: username, password: password })
             .map(function (res) { return res.json(); })
             .do(function (res) {
