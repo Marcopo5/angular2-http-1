@@ -23,14 +23,23 @@ export class AuthService {
 	 * Log the user in
 	 */
 	login(username: string, password: string): Observable<string> {
-		console.log('username', username)
-		console.log('password', password)
 		return this.http.post(`${this.authUrl}/login`, { username, password })
 			.map(res => res.json())
 			.do(res => {
-				if (res.token) localStorage.setItem('auth_token', res.token);
+				if (res.token) {
+					localStorage.setItem('auth_token', res.token);
+					this.loggedIn = true;
+				}
 			})
 			.catch(this.handleError);
+	}
+
+	/**
+	 * Log the user out
+	 */
+	logout() {
+		localStorage.removeItem('auth_token');
+		this.loggedIn = false;
 	}
 
 	/**

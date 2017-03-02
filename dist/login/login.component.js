@@ -13,8 +13,8 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var auth_service_1 = require("../shared/services/auth.service");
 var LoginComponent = (function () {
-    function LoginComponent(service, router) {
-        this.service = service;
+    function LoginComponent(authService, router) {
+        this.authService = authService;
         this.router = router;
         this.credentials = { username: '', password: '' };
         this.successMessage = '';
@@ -26,13 +26,12 @@ var LoginComponent = (function () {
      */
     LoginComponent.prototype.login = function () {
         var _this = this;
-        this.service.login(this.credentials.username, this.credentials.password)
+        this.authService.login(this.credentials.username, this.credentials.password)
             .subscribe(function (data) {
             _this.router.navigate(['']);
             console.log('data', data);
         }, function (error) {
-            console.log(error);
-            _this.errorMessage = "Wrong email/username or password.";
+            _this.errorMessage = error;
             _this.clearMessages();
         });
     };

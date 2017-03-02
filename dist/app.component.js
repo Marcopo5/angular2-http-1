@@ -10,26 +10,49 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var user_service_1 = require("./shared/services/user.service");
+var auth_service_1 = require("./shared/services/auth.service");
 var AppComponent = (function () {
-    function AppComponent(service) {
-        this.service = service;
+    function AppComponent(userService, authService, router) {
+        this.userService = userService;
+        this.authService = authService;
+        this.router = router;
     }
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.service.getUsers()
-            .subscribe(function (users) { return _this.users = users; }, function (err) {
-            console.log('err', err);
+        this.userService.getUsers()
+            .subscribe(function (users) { return _this.users = users; }, function (error) {
+            console.log('userService.getUsers error', error);
         });
+    };
+    Object.defineProperty(AppComponent.prototype, "isLoggedIn", {
+        /**
+         * Is the user logged in
+         */
+        get: function () {
+            return this.authService.isLoggedIn();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Log the user out
+     */
+    AppComponent.prototype.logout = function () {
+        this.authService.logout();
+        this.router.navigate(['/login']);
     };
     return AppComponent;
 }());
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        template: "\n        <div class=\"container\">\n            <div class=\"navbar navbar-default\">\n                <div class=\"container-fluid\"></div>\n                <div class=\"navbar-header\">\n                    <a routerLink=\"/\" class=\"navbar-brand\">My HTTP app</a>\n                </div>\n\n                <ul class=\"nav navbar-nav\">\n                    <li><a routerLink=\"/users\">Users</a></li>\n                </ul>\n             </div>\n            <router-outlet></router-outlet>\n        </div>\n    "
+        template: "\n        <div class=\"container\">\n            <div class=\"navbar navbar-default\">\n                <div class=\"container-fluid\"></div>\n                <div class=\"navbar-header\">\n                    <a routerLink=\"/\" class=\"navbar-brand\">My HTTP app</a>\n                </div>\n\n                <ul class=\"nav navbar-nav\">\n                    <li><a routerLink=\"/users\">Users</a></li>\n                </ul>\n\n                <ul class=\"nav navbar-nav navbar-right\">\n                    <li *ngIf=\"!isLoggedIn\"><a routerLink=\"/login\">Login</a></li>\n                    <li *ngIf=\"isLoggedIn\"><a (click)=\"logout()\">Logout</a></li>\n                </ul>\n             </div>\n            <router-outlet></router-outlet>\n        </div>\n    "
     }),
-    __metadata("design:paramtypes", [user_service_1.UserService])
+    __metadata("design:paramtypes", [user_service_1.UserService,
+        auth_service_1.AuthService,
+        router_1.Router])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map
