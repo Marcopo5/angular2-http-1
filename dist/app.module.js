@@ -18,6 +18,7 @@ var user_list_component_1 = require("./users/user-list/user-list.component");
 var user_single_component_1 = require("./users/user-single/user-single.component");
 var user_edit_component_1 = require("./users/user-edit/user-edit.component");
 var user_create_component_1 = require("./users/user-create/user-create.component");
+var login_component_1 = require("./login/login.component");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
 require("rxjs/add/operator/do");
@@ -41,7 +42,8 @@ AppModule = __decorate([
             user_list_component_1.UserListComponent,
             user_single_component_1.UserSingleComponent,
             user_edit_component_1.UserEditComponent,
-            user_create_component_1.UserCreateComponent
+            user_create_component_1.UserCreateComponent,
+            login_component_1.LoginComponent
         ],
         providers: [
             user_service_1.UserService
